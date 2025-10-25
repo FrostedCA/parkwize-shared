@@ -1,0 +1,9 @@
+jdk:
+  - openjdk18
+
+install:
+  - mvn clean install -DskipTests=true
+
+classpath:
+  - target/classes
+  - target/dependency/*.jar
