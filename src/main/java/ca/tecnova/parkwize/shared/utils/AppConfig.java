@@ -1,17 +1,13 @@
 package ca.tecnova.parkwize.shared.utils;
-import ca.tecnova.parkwize.shared.objects.Dataset;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 public class AppConfig {
 
     public static final ObjectMapper objectMapper = new ObjectMapper();
-    public static final List<Dataset> DATASETS = new ArrayList<>();
 
     public static final Dotenv dotenv = Dotenv.configure().directory("./").ignoreIfMissing().load();
 
