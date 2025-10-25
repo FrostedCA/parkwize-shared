@@ -1,5 +1,9 @@
 jdk:
-  - openjdk18
+  - openjdk21
+
+before_install:
+  - java -version
+  - mvn -version
 
 install:
   - mvn clean install -DskipTests=true
