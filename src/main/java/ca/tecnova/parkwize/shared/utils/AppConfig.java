@@ -33,11 +33,25 @@ public class AppConfig {
 
     public static String getJavaEnv() { return dotenv.get("JAVA_ENV", "DEV"); }
 
-    public static String getSasToken() {
+    public static String getAmqSig() {
         if (getJavaEnv().equals("DEV")) {
-            return dotenv.get("SAS_TOKEN_DEV");
+            return dotenv.get("AMQ_SIG_DEV");
         }
-        return dotenv.get("SAS_TOKEN");
+        return dotenv.get("AMQ_SIG");
+    }
+
+    public static String getAmqHost() {
+        if (getJavaEnv().equals("DEV")) {
+            return dotenv.get("AMQ_HOST_DEV");
+        }
+        return dotenv.get("AMQ_HOST");
+    }
+
+    public static String getAmqName() {
+        if (getJavaEnv().equals("DEV")) {
+            return dotenv.get("AMQ_NAME_DEV");
+        }
+        return dotenv.get("AMQ_NAME");
     }
 
     public static String decodeBase64Message(String encodedMessage) {
