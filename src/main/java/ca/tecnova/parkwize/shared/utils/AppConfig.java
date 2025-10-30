@@ -9,16 +9,13 @@ public class AppConfig {
 
     public static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static final Dotenv dotenv = Dotenv.configure().directory("./").ignoreIfMissing().load();
+    public static final Dotenv dotenv = Dotenv.configure().directory("./").load();
 
     public static String getParkwizeApiKey() throws ParseException {
-
         String apiKey = dotenv.get("PARKWIZE_API_KEY", "");
-
         if (apiKey.isEmpty() || apiKey.isBlank()) {
             throw new ParseException("No API key found. Dot event either missing or 'PARKWIZE_API_KEY' is not defined.", 0);
         }
-
         return apiKey;
     }
 
@@ -34,7 +31,14 @@ public class AppConfig {
 
     public static String getRedisHost() { return dotenv.get("REDIS_HOST"); }
 
-    public static String getSasToken() { return dotenv.get("SAS_TOKEN"); }
+    public static String getJavaEnv() { return dotenv.get("JAVA_ENV", "DEV"); }
+
+    public static String getSasToken() {
+        if (getJavaEnv().equals("DEV")) {
+            return dotenv.get("SAS_TOKEN_DEV");
+        }
+        return dotenv.get("SAS_TOKEN");
+    }
 
     public static String decodeBase64Message(String encodedMessage) {
         try {
