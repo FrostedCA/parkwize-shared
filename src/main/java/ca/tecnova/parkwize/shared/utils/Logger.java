@@ -23,4 +23,6 @@ public class Logger {
 
     public static void warning(String text) { log(LogType.WARNING, LogType.WARNING.color + text + LogColors.RESET); }
 
+    public static void cron(String text) { log(LogType.CRON, LogType.CRON.color + text + LogColors.RESET); }
+
 }
