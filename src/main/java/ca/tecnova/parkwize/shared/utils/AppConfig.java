@@ -9,7 +9,32 @@ public class AppConfig {
 
     public static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static final Dotenv dotenv = Dotenv.configure().directory("./").load();
+    public static final Dotenv dotenv = loadDotenv();
+
+    private static Dotenv loadDotenv() {
+        String[] possiblePaths = {
+                "./",           // Spring Boot + some environments
+                ".",            // Plain Java/Maven
+                "../",          // Sometimes needed for packaged JARs
+                ""              // Current directory (no path)
+        };
+
+        for (String path : possiblePaths) {
+            try {
+                return Dotenv.configure()
+                        .directory(path)
+                        .ignoreIfMissing()
+                        .load();
+            } catch (Exception e) {
+                // Try next path
+            }
+        }
+
+        // If all fails, try without directory specification (uses system env vars)
+        return Dotenv.configure()
+                .ignoreIfMissing()
+                .load();
+    }
 
     public static String getParkwizeApiKey() throws ParseException {
         String apiKey = dotenv.get("PARKWIZE_API_KEY", "");
