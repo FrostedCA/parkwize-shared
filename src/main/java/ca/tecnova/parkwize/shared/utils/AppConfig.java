@@ -13,7 +13,7 @@ public class AppConfig {
 
     public static String getParkwizeApiKey() throws ParseException {
         String apiKey = dotenv.get("PARKWIZE_API_KEY", "");
-        if (apiKey.isEmpty() || apiKey.isBlank()) {
+        if (apiKey.isBlank()) {
             throw new ParseException("No API key found. Dot event either missing or 'PARKWIZE_API_KEY' is not defined.", 0);
         }
         return apiKey;
@@ -52,6 +52,34 @@ public class AppConfig {
             return dotenv.get("AMQ_NAME_DEV");
         }
         return dotenv.get("AMQ_NAME");
+    }
+
+    public static String getRmqHost() {
+        if (getJavaEnv().equals("DEV")) {
+            return dotenv.get("RMQ_HOST_DEV");
+        }
+        return dotenv.get("RMQ_HOST");
+    }
+
+    public static Integer getRmqPort() {
+        if (getJavaEnv().equals("DEV")) {
+            return Integer.parseInt(dotenv.get("RMQ_PORT_DEV"));
+        }
+        return Integer.parseInt(dotenv.get("RMQ_PORT"));
+    }
+
+    public static String getRmqUser() {
+        if (getJavaEnv().equals("DEV")) {
+            return dotenv.get("RMQ_USER_DEV");
+        }
+        return dotenv.get("RMQ_USER");
+    }
+
+    public static String getRmqPassword() {
+        if (getJavaEnv().equals("DEV")) {
+            return dotenv.get("RMQ_PASS_DEV");
+        }
+        return dotenv.get("RMQ_PASS");
     }
 
     public static String decodeBase64Message(String encodedMessage) {
