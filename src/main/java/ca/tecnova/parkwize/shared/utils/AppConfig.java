@@ -82,6 +82,10 @@ public class AppConfig {
         return dotenv.get("RMQ_PASS");
     }
 
+    public static Boolean isProd() {
+        return getJavaEnv().equals("PROD");
+    }
+
     public static String decodeBase64Message(String encodedMessage) {
         try {
             byte[] decodedBytes = Base64.getDecoder().decode(encodedMessage);

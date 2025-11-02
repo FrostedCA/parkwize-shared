@@ -15,6 +15,12 @@ public class Ticket implements ITableObject {
     @JsonProperty("Id")
     private Long ticketId;
 
+    @JsonProperty("SubscriberId")
+    private int subscriberId;
+
+    @JsonProperty("OrganizationId")
+    private int organizationId;
+
     @JsonProperty("CompanyId")
     private int companyId;
 
@@ -60,6 +66,22 @@ public class Ticket implements ITableObject {
 
     public void setTicketId(Long ticketId) {
         this.ticketId = ticketId;
+    }
+
+    public int getSubscriberId() {
+        return subscriberId;
+    }
+
+    public void setSubscriberId(int subscriberId) {
+        this.subscriberId = subscriberId;
+    }
+
+    public int getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(int organizationId) {
+        this.organizationId = organizationId;
     }
 
     public int getCompanyId() {
@@ -170,6 +192,8 @@ public class Ticket implements ITableObject {
     public Map<String, Object> getMap() {
         Map<String, Object> ticketMap = new HashMap<>();
         ticketMap.put("ticket_id", this.getTicketId());
+        ticketMap.put("subscriber_id", this.getSubscriberId());
+        ticketMap.put("organization_id", this.getOrganizationId());
         ticketMap.put("ticket_state_id", this.getTicketStateId());
         ticketMap.put("ticket_type_id", this.getTicketTypeId());
         ticketMap.put("begin_date", this.getBeginDate());
@@ -185,6 +209,8 @@ public class Ticket implements ITableObject {
     public String toString() {
         return "Ticket{" +
                 "ticketId='" + ticketId + '\'' +
+                ", subscriberId='" + subscriberId + '\'' +
+                ", organizationId='" + organizationId + '\'' +
                 ", companyId='" + companyId + '\'' +
                 ", ticketStateId='" + ticketStateId + '\'' +
                 ", customerId='" + customerId + '\'' +

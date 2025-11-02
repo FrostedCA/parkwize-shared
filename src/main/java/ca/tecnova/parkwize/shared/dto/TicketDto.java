@@ -10,6 +10,8 @@ import java.util.List;
 public record TicketDto(
         Long ticketId,
         int companyId,
+        int subscriberId,
+        int organizationId,
         String customerId,
         Timestamp issueDate,
         Timestamp beginDate,

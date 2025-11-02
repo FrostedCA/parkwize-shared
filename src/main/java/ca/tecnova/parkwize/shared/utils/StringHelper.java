@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 import java.util.Date;
 
 public final class StringHelper {
@@ -19,6 +20,10 @@ public final class StringHelper {
             return "";
         }
         return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
+    }
+
+    public static String join(String separator, String... strings) {
+        return Arrays.stream(strings).reduce((a, b) -> a + separator + b).orElse("");
     }
 
     public static String getDoubleDigitsFormat(String text) {
