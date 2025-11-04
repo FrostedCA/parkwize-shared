@@ -25,4 +25,6 @@ public class Logger {
 
     public static void cron(String text) { log(LogType.CRON, LogType.CRON.color + text + LogColors.RESET); }
 
+    public static void pricing(String text) { log(LogType.PRICING, LogType.PRICING.color + text + LogColors.RESET); }
+
 }
