@@ -3,11 +3,11 @@ package ca.tecnova.parkwize.shared.utils;
 public enum LogType {
 
     NONE (LogColors.RESET),
-    INFO (LogColors.GREEN),
+    INFO (LogColors.RESET),
     OK (LogColors.GREEN_BOLD),
     ERROR (LogColors.RED_BOLD),
     WARNING (LogColors.YELLOW_BOLD),
-    CRON (LogColors.CYAN_BOLD),
+    CRON (LogColors.CYAN),
     PRICING (LogColors.PURPLE)
     ;
 
