@@ -8,7 +8,7 @@ public enum LogType {
     ERROR (LogColors.RED_BOLD),
     WARNING (LogColors.YELLOW_BOLD),
     CRON (LogColors.CYAN_BOLD),
-    PRICING (LogColors.PURPLE_BOLD)
+    PRICING (LogColors.PURPLE)
     ;
 
     final String color;
