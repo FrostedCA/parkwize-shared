@@ -54,61 +54,70 @@ public class AppConfig {
         return dotenv.get("PARKWIZE_V2_URL", "https://www.parkwizeinc.com/api/v2");
     }
 
-    public static String getRedisHost() { return dotenv.get("REDIS_HOST"); }
+    public static String getRedisHost() {
+        if (isDev()) {
+            return dotenv.get("REDIS_DEV_HOST");
+        }
+        return dotenv.get("REDIS_HOST");
+    }
 
     public static String getJavaEnv() { return dotenv.get("JAVA_ENV", "DEV"); }
 
     public static String getAmqSig() {
         if (getJavaEnv().equals("DEV")) {
-            return dotenv.get("AMQ_SIG_DEV");
+            return dotenv.get("AMQ_DEV_SIG");
         }
         return dotenv.get("AMQ_SIG");
     }
 
     public static String getAmqHost() {
         if (getJavaEnv().equals("DEV")) {
-            return dotenv.get("AMQ_HOST_DEV");
+            return dotenv.get("AMQ_DEV_HOST");
         }
         return dotenv.get("AMQ_HOST");
     }
 
     public static String getAmqName() {
         if (getJavaEnv().equals("DEV")) {
-            return dotenv.get("AMQ_NAME_DEV");
+            return dotenv.get("AMQ_DEV_NAME");
         }
         return dotenv.get("AMQ_NAME");
     }
 
     public static String getRmqHost() {
         if (getJavaEnv().equals("DEV")) {
-            return dotenv.get("RMQ_HOST_DEV");
+            return dotenv.get("RMQ_DEV_HOST");
         }
         return dotenv.get("RMQ_HOST");
     }
 
     public static Integer getRmqPort() {
         if (getJavaEnv().equals("DEV")) {
-            return Integer.parseInt(dotenv.get("RMQ_PORT_DEV"));
+            return Integer.parseInt(dotenv.get("RMQ_DEV_PORT"));
         }
         return Integer.parseInt(dotenv.get("RMQ_PORT"));
     }
 
     public static String getRmqUser() {
         if (getJavaEnv().equals("DEV")) {
-            return dotenv.get("RMQ_USER_DEV");
+            return dotenv.get("RMQ_DEV_USER");
         }
         return dotenv.get("RMQ_USER");
     }
 
     public static String getRmqPassword() {
         if (getJavaEnv().equals("DEV")) {
-            return dotenv.get("RMQ_PASS_DEV");
+            return dotenv.get("RMQ_DEV_PASS");
         }
         return dotenv.get("RMQ_PASS");
     }
 
     public static Boolean isProd() {
         return getJavaEnv().equals("PROD");
+    }
+
+    public static Boolean isDev() {
+        return getJavaEnv().equals("DEV");
     }
 
     public static String decodeBase64Message(String encodedMessage) {
