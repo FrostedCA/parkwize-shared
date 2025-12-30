@@ -11,7 +11,7 @@ public enum LogType {
     PRICING (LogColors.PURPLE)
     ;
 
-    final String color;
+    public final String color;
 
     LogType(String color) {
         this.color = color;
